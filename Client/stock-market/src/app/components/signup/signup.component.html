@@ -1,0 +1,93 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <form #userRegisterForm="ngForm" (ngSubmit)="registerUser()">
+                        <small class="text-danger" mb-2>{{message}}</small>
+                        <div class="form-group">
+                            <label for="userName">Username</label>
+                            <input 
+                            type="text" 
+                            class="form-control" placeholder="Enter Username"  
+                            [ngClass]="{'is-invalid': registerUserName.errors && registerUserName.touched}"  
+                            [(ngModel)]="user.userName"
+                            name="userName"
+                            #registerUserName="ngModel"
+                            required
+                            minlength="4"
+                            >
+                            <div [hidden]="!registerUserName.errors?.required" class="invalid-feedback">
+                                Username is required field
+                            </div>
+                            <div [hidden]="!registerUserName.errors?.minlength" class="invalid-feedback">
+                                Username requires at least four characters
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password <i class="fa fa-info-circle" aria-hidden="true" ></i>
+                            </label>
+                            <input 
+                            type="password" 
+                            class="form-control" 
+                            placeholder="Enter Password" 
+                            name="password" 
+                            [(ngModel)]="user.password" 
+                            [ngClass]="{'is-invalid': pass.touched && pass.errors}" 
+                            #pass="ngModel" 
+                            required
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$">
+                            <div [hidden]="!pass.errors?.required" class="invalid-feedback">
+                                Password is required field
+                            </div>
+                            <div [hidden]="!pass.errors?.pattern" class="invalid-feedback">
+                                Password must match specified condition
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Id
+                            </label>
+                            <input 
+                            type="email" 
+                            class="form-control" 
+                            placeholder="Enter Email" 
+                            name="email" 
+                            [(ngModel)]="user.emailId" 
+                            [ngClass]="{'is-invalid': email.touched && email.errors}" 
+                            #email="ngModel" 
+                            required
+                            pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$">
+                            <div [hidden]="!email.errors?.required" class="invalid-feedback">
+                                Email is required field
+                            </div>
+                            <div [hidden]="!email.errors?.pattern" class="invalid-feedback">
+                                Please enter a valid email
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Mobile No
+                            </label>
+                            <input 
+                            type="tel" 
+                            class="form-control" 
+                            placeholder="Enter Mobile No." 
+                            name="mobileNo" 
+                            [(ngModel)]="user.mobileNo" 
+                            [ngClass]="{'is-invalid': mobileNo.touched && mobileNo.errors}" 
+                            #mobileNo="ngModel" 
+                            required
+                            >
+                            <div [hidden]="!mobileNo.errors?.required" class="invalid-feedback">
+                                Mobile no is required field
+                            </div>
+                        </div>
+                        <button [disabled]="!userRegisterForm.form.valid" class="btn btn-primary btn-block" >Register</button>
+                       
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

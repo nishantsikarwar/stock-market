@@ -1,0 +1,12 @@
+h3.heading {
+    font-size: 2vw;
+    width: 30%;
+    text-align: center;
+}
+@media screen and (max-width: 480px){
+    h3.heading {
+        font-size: 5vw;
+        width: 50%;
+        text-align: center;
+    }
+}

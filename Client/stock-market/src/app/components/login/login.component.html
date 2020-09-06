@@ -1,0 +1,40 @@
+<app-navbar> </app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <form #loginForm="ngForm" (ngSubmit)="loginUser()">
+                        <small class="text-danger" mb-2>{{message}}</small>
+                        <div class="form-group">
+                            <label for="userName">Username</label>
+                            <input 
+                            type="text" 
+                            class="form-control" placeholder="Enter Username"  
+                            [ngClass]="{'is-invalid': loginUserName.errors && loginUserName.touched}"  
+                            [(ngModel)]="userName"
+                            name="userName"
+                            #loginUserName="ngModel"
+                            required
+                            >
+                            <div [hidden]="!loginUserName.errors?.required" class="invalid-feedback">
+                                Username is required field
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" placeholder="Enter Password" name="password" [(ngModel)]="password" [ngClass]="{'is-invalid': pass.touched && pass.errors}" #pass="ngModel" required>
+                            <div [hidden]="!pass.errors?.required" class="invalid-feedback">
+                                Password is required field
+                            </div>
+                        </div>
+                        <button [disabled]="!loginForm.form.valid" class="btn btn-primary btn-block" >Log In</button>
+                       
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
